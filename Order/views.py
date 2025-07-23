@@ -28,7 +28,7 @@ def Buy_now(request,product_id):
 
     delivery = datetime.now().date()+timedelta(days=7)
         
-    return render(request,'order/buy_now.html',{'product':product,'form':shipping_form,'delivery':delivery})
+    return render(request,'buy_now.html',{'product':product,'form':shipping_form,'delivery':delivery})
 
 
 @login_required
@@ -49,7 +49,7 @@ def Track_order(request):
         }
         for order in orders
     ]
-    return render(request,'order/track_order.html',{'order':orders,'orders_json': json.dumps(orders_data, cls=DjangoJSONEncoder)})
+    return render(request,'track_order.html',{'order':orders,'orders_json': json.dumps(orders_data, cls=DjangoJSONEncoder)})
 
 def Cancel_order(request,order_id):
     order = Order.objects.get(id=order_id,user=request.user)

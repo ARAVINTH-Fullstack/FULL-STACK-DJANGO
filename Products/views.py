@@ -12,7 +12,7 @@ def Home_page(request):
     today_special = Product.objects.order_by('?')[:4]
     top_discount = Product.objects.filter(sale=True)[:7]
     lowest_price = Product.objects.filter(discount_price__lt = 60000).order_by('?')[:5]
-    return render(request,'products/home.html',{'lowest_price':lowest_price,'trending_product':trending_product,'for_you':for_you,'today_special':today_special,'top_discount':top_discount})
+    return render(request,'home.html',{'lowest_price':lowest_price,'trending_product':trending_product,'for_you':for_you,'today_special':today_special,'top_discount':top_discount})
 
 def Product_list(request):
     category = request.GET.get("category").lower()
@@ -70,7 +70,7 @@ def Product_list(request):
     delivery = datetime.now().date()+timedelta(days=7)
     fast = datetime.now().date()+timedelta(days=2)
 
-    return render(request,'products/product.html',{'product':product,'wishlist_id':wishlist_id,'category':category,'delivery':delivery,'fast':fast})
+    return render(request,'product.html',{'product':product,'wishlist_id':wishlist_id,'category':category,'delivery':delivery,'fast':fast})
 
 def Product_view(request,pk):
     item = Product.objects.get(id=pk)
@@ -91,7 +91,7 @@ def Product_view(request,pk):
                 Reviews.objects.create(product=item,user=request.user,rating=rating,comment=comment)
             return redirect('product_view',pk=item.id)
     review_sum = reviews.first()
-    return render(request,'products/product_view.html',{'item':item,'reviews':reviews,'user_review':user_review,'delivery':delivery})
+    return render(request,'product_view.html',{'item':item,'reviews':reviews,'user_review':user_review,'delivery':delivery})
 
 def search_view(request):
     query = request.GET.get('q', '').strip()
@@ -112,7 +112,7 @@ def search_view(request):
     if request.user.is_authenticated:
         wishlist_id = Wishlish.objects.filter(user=request.user).values_list('product_id',flat=True)
     
-    return render(request, 'products/search.html', {'results': results, 'query': query,'wishlist_id':wishlist_id})
+    return render(request, 'search.html', {'results': results, 'query': query,'wishlist_id':wishlist_id})
 
 
 def custom_404_view(request, exception):

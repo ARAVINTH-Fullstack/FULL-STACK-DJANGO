@@ -19,4 +19,4 @@ def Toggle_wishlist(request,productId):
 @login_required(login_url='/accounts/login')
 def Wishlist_view(request):
     wishlist = Wishlish.objects.filter(user=request.user).select_related('product')
-    return render(request,'wishlist/wishlist.html',{'wishlist':wishlist})
+    return render(request,'wishlist.html',{'wishlist':wishlist})

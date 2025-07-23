@@ -12,7 +12,7 @@ def Signup(request):
             return redirect('home_page')
         else:
             return redirect('signup_page')
-    return render(request,'Accounts/signup.html',{'form':form})
+    return render(request,'signup.html',{'form':form})
 
 def Login(request):
     if request.method == 'POST':
@@ -22,7 +22,7 @@ def Login(request):
         if user.is_authenticated:
             login(request,user)
             return redirect('home_page')
-    return render(request,'accounts/login.html')
+    return render(request,'login.html')
 
 def logout_view(request):
     logout(request)
@@ -32,7 +32,7 @@ def Profile_view(request):
     user = request.user
     if user.is_authenticated:
         profile = Profile.objects.get(user=user)
-    return render(request,'accounts/profile.html',{'profile':profile})
+    return render(request,'profile.html',{'profile':profile})
 
 def Add_vendor(request):
     user = request.user
@@ -44,7 +44,7 @@ def Add_vendor(request):
             vendor = Vendor(user=user,shop_name=shop_name,vendor_number=vendor_number,vendor_address=vendor_address)
             vendor.save()
             return redirect('home_page')
-    return render(request,'accounts/vendor.html')
+    return render(request,'vendor.html')
 
 def Add_profile(request):
     if request.method == 'POST':
@@ -57,4 +57,4 @@ def Add_profile(request):
             form = Profile(user=request.user,profile=profile,mobile=mobile,address=address,city=city,country=country,pin_code=pin_code)
             form.save()
             return redirect('profile_page')
-    return render(request,'accounts/add_profile.html')
+    return render(request,'add_profile.html')
