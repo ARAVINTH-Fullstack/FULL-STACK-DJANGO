@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} HOME-PAGE {% endblock %}
+
+
+{% block content %}
+
+    <form action="" method="GET">
+        {{ filters.form.as_p }}
+        <button type="submit">search</button>
+    </form>
+
+    {% for item in filters.qs %}
+        <h1>{{ item.name }}</h1>
+    {% endfor %}
+
+{% endblock %}

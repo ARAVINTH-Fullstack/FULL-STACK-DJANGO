@@ -1,0 +1,89 @@
+{% load static %}
+<div class="d-flex nav-bar justify-content-center align-items-end">
+    <div class="d-flex">
+        <div class="me-5">
+            <h1><a href="#">ZYPTORA</a></h1>
+        </div>
+        <div class="ms-5">
+            <form action="#" class="d-flex">
+                <input type="text" class="form-control" placeholder="search for something" id="search-box" width="300px">
+                <button class="btn btn-success">Search</button>
+            </form>
+        </div>
+        <div class="d-flex">
+            <ul class="list-unstyled d-flex align-items-center justify-content-center">
+                <li><a href="#" class="p-2 mx-2">Deals & offers</a></li>
+                <li><a href="{% url 'track_order' %}" class="p-2 mx-2">Order</a></li>
+                <li>
+                    <div class="dropdown hover-dropdown mx-1">
+                        <a href="{% url 'login_page' %}" class="dropdown-toggle"><img src="{% static 'assets/profile.png' %}" alt="" style="width: 25px; height: 25px;"> Login</a>
+                        <ul class="dropdown-menu" style="right: 2px;">
+                            <li><a href="{% url 'signup_page' %}" class="dropdown-item">SIGN UP</a></li>
+                            <li><a href="#" class="dropdown-item">MY PROFILE</a></li>
+                            <li><a href="#" class="dropdown-item">ACCOUNT HELP</a></li>
+                        </ul>
+                    </div>
+                </li>
+                <li><a href="{% url 'showcart' %}" class="p-2 mx-1"><img src="{% static 'assets/shopping-cart.png' %}" alt="" style="width: 25px; height: 25px; transform: translateY(-2px);"> Cart</a></li>
+                <li><a href="#" class="p-2 mx-1"> <img src="{% static 'assets/heart-svgrepo-com.svg' %}" alt="" style="height: 25px; width: 25px;"> Wishlist</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+    const searchBox = document.getElementById('search-box')
+
+    const phrases = ['mobiles','laptops','trending','fresh fruits','top discount']
+
+    let phraseIndex = 0
+    let charIndex = 0
+    let cursorVisible = true
+    let isDeleting = false
+    let userTyped = false
+
+    function typeAnimation() {
+        if(userTyped) return;
+
+        const currentPhrase = phrases[phraseIndex]
+        let displayText = currentPhrase.substring(0,charIndex)
+
+        if(isDeleting) {
+            charIndex--
+        } else {
+            charIndex++
+        }
+
+        if(!isDeleting && charIndex === currentPhrase.length + 2) {
+            isDeleting = true
+            setTimeout(typeAnimation,1000)
+            return
+        }
+
+        if(isDeleting && charIndex === 0) {
+            isDeleting = false
+            phraseIndex = (phraseIndex + 1) % phrases.length
+        }
+
+        cursorVisible = !cursorVisible
+        const cursorChar = cursorVisible?"|":"";
+        searchBox.placeholder = displayText + cursorChar
+
+        setTimeout(typeAnimation,isDeleting?50:100)
+    }
+
+    searchBox.addEventListener("input",() => {
+        userTyped = true
+        searchBox.placeholder = "";
+    })
+
+    searchBox.addEventListener("blur",() => {
+        if(searchBox.value.trim() === "") {
+            userTyped = false
+            charIndex = 0
+            typeAnimation()
+        }
+    })
+
+    document.addEventListener("DOMContentLoaded",typeAnimation)
+</script>

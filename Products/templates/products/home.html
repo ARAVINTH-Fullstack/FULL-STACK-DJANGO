@@ -1,0 +1,302 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} HOME-PAGE {% endblock %}
+
+
+{% block content %}
+    {% include 'navbar2.html' %}
+    <!-- category -->
+     <section style="background-color: #f8f9fa;">
+         <div class="d-flex justify-content-around mt-3 category gap-2 w-100 h-auto scroll-container bg-light">
+             <a href="{% url 'product' %}?category=mobile">
+                 <div class="d-flex flex-column align-items-center">
+                         <div><img src="{% static 'assets/19.jpg' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                         <li class="h-100 d-flex align-items-center">MOBILES</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=laptop">
+                 <div class="d-flex flex-column align-items-center">
+                     <div><img src="{% static 'assets/hp vic 1.jpg' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">LAPTOP</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=television">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/vi1.avif' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">TELEVISION</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=camera">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/camera.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">CAMERA</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=smartwatch">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/watch.jpg' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">SMARTWATCH</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=refrigerator">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/refriregerator.jpg' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">REFRIGERATOR</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=grocery">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/grocery.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">GROCERY</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=fashion">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/fashion.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">FASHION</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=furnitures">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/furniture.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">FURNITURES</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=babycare">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/baby care.webp' %}"alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">BABY CARE</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=earbud">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/ear buds.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">EAR BUDS</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=lighting">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/light.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">LIGHTING</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=kitchen">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/kitchen.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover"></div>
+                     <li class="h-100 d-flex align-items-center">KITCHEN</li>
+                 </div>
+             </a>
+             <a href="{% url 'product' %}?category=book">
+                 <div class="d-flex flex-column align-items-center category-hover">
+                     <div><img src="{% static 'assets/book.webp' %}" alt="" style="width: 60px; height: 60px;" class="mt-1 object-fit-cover me-1"></div>
+                     <li class="h-100 d-flex align-items-center">BOOK</li>
+                 </div>
+             </a>
+         </div>
+     
+         <div id="modernCarousel" class="carousel slide mt-2" data-bs-ride="carousel">
+             <!-- Indicators -->
+             <div class="carousel-indicators">
+                 <button type="button" data-bs-target="#modernCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                 <button type="button" data-bs-target="#modernCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                 <button type="button" data-bs-target="#modernCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+             </div>
+     
+             <!-- Carousel items -->
+             <div class="carousel-inner">
+                 <div class="carousel-item active" style="height: 60vh;">
+                     <img src="{% static 'assets/banner.webp' %}" class="d-block w-100 object-fit-cover h-100" alt="Slide 1">
+                 </div>
+                 <div class="carousel-item" style="height: 60vh;">
+                     <img src="{% static 'assets/banner 2.jpg' %}"  class="d-block w-100 object-fit-cover h-100" alt="Slide 2">
+                 </div>
+                 <div class="carousel-item" style="height: 60vh;">
+                     <img src="{% static 'assets/banner 3.jpg' %}" class="d-block w-100 object-fit-cover h-100" alt="Slide 3">
+                 </div>
+             </div>
+     
+             <!-- Controls -->
+             <button class="carousel-control-prev" type="button" data-bs-target="#modernCarousel" data-bs-slide="prev">
+                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                 <span class="visually-hidden">Previous</span>
+             </button>
+             <button class="carousel-control-next" type="button" data-bs-target="#modernCarousel" data-bs-slide="next">
+                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                 <span class="visually-hidden">Next</span>
+             </button>
+         </div>
+     
+         <div class="d-flex flex-column gap-5">
+             <div class="h-100 w-100 row gap-5 gap-sm-5 gap-md-0 ">
+     
+                 <!-- Fixed-size box -->
+                 <div class="col-12 col-md-6 col-lg-4">
+                     <h2>trending</h2>
+                     <div class="border rounded overflow-hidden p-2 w-100 h-100" style="background-color: rgb(172, 116, 224);">
+                         <div class="d-flex flex-wrap" style="height: 100%;">
+                         {% for product in trending_product %}
+                             <div class="p-1 w-50 h-50">
+                                 <a href="{% url 'product_view' product.id %}">
+                                     <div class="card h-100 border shadow-sm rounded-2 d-flex flex-column justify-content-between" style="font-size: 10px;">
+                                     
+                                         <!-- Image with fixed height -->
+                                         <div class="text-center w-auto" style="height: 60%;">
+                                             <img src="{{ product.image1.url }}" class="img-fluid h-100 p-1 object-fit-cover rounded-top" alt="{{ product.name }}">
+                                         </div>
+                 
+                                         <!-- Product details -->
+                                         <div class="px-1 text-size h-auto">
+                                             <div>
+                                                 <p class="text-truncate">{{ product.name }}</p>
+                                             </div>
+                                             <div>
+                                                 <p class="text-dark">from ${{ product.discount_price }} <del class="small">{{product.price}}</del> </p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </a>
+                             </div>     
+                         {% endfor %}
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-12 col-md-6 col-lg-4">
+                     <h2>for you</h2>
+                     <div class="border rounded overflow-hidden p-2 w-100 h-100" style="background-color: burlywood;">
+                         <div class="d-flex flex-wrap" style="height: 100%;">
+                         {% for product in for_you %}
+                             <div class="p-1 w-50 h-50">
+                                 <a href="{% url 'product_view' product.id %}">
+                                     <div class="card h-100 border shadow-sm rounded-2 d-flex flex-column justify-content-between" style="font-size: 10px;">
+                                     
+                                         <!-- Image with fixed height -->
+                                         <div class="text-center w-auto" style="height: 60%;">
+                                             <img src="{{ product.image1.url }}" class="img-fluid h-100 object-fit-cover rounded-top p-1" alt="{{ product.name }}">
+                                         </div>
+                 
+                                         <!-- Product details -->
+                                         <div class="px-1 text-size h-auto">
+                                             <div>
+                                                 <p class="text-truncate">{{ product.name }}</p>
+                                             </div>
+                                             <div>
+                                                 <p class="text-dark">Save ${{ product.saving }}  </p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </a>
+                             </div>     
+                         {% endfor %}
+                         </div>
+                     </div>
+                 </div>
+                 <div class="col-12 col-md-6 col-lg-4">
+                     <h2>Today Special</h2>
+                     <div class="border rounded overflow-hidden p-2 w-100 h-100" style="background-color: rgb(216, 137, 81);">
+                         <div class="d-flex flex-wrap" style="height: 100%;">
+                         {% for product in today_special %} 
+                             <div class="p-1 w-50 h-50">
+                                 <a href="{% url 'product_view' product.id %}">
+                                     <div class="card h-100 border shadow-sm rounded-2 d-flex flex-column justify-content-between" style="font-size: 10px;">
+                                     
+                                         <!-- Image with fixed height -->
+                                         <div class="text-center w-auto" style="height: 60%;">
+                                             <img src="{{ product.image1.url }}" class="img-fluid h-100 object-fit-cover rounded-top p-1" alt="{{ product.name }}">
+                                         </div>
+                 
+                                         <!-- Product details -->
+                                         <div class="px-1 text-size h-auto">
+                                             <div>
+                                                 <p class="text-truncate">{{ product.name }}</p>
+                                             </div>
+                                             <div>
+                                                 <p class="text-dark"> ${{ product.discount_price }}  <span class="text-success small">50% off</span> </p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </a>
+                             </div>     
+                         {% endfor %}
+                         </div>
+                     </div>
+                 </div>
+             </div>
+     
+             <div class="h-100 w-100">
+                 <h4>Top Discount</h4>
+                 <div class="p-1 border h-50 " style="background-color: darkcyan;">
+     
+                     <div class="scroll-container" >
+                         {% for product in top_discount %}
+                             <div class="p-1 card-custom" style="width: 24%;">
+                                 <a href="{% url 'product_view' product.id %}">
+                                     <div class="card h-100 border shadow-sm rounded-2 d-flex flex-column justify-content-between" style="font-size: 10px;">
+                                     
+                                         <!-- Image with fixed height -->
+                                         <div class="text-center w-auto">
+                                             <img src="{{ product.image1.url }}" class="img-fluid h-100 p-1 object-fit-cover rounded-top" alt="{{ product.name }}">
+                                         </div>
+                 
+                                         <!-- Product details -->
+                                         <div class="px-1 text-size h-auto">
+                                             <div>
+                                                 <p class="text-truncate">{{ product.name }}</p>
+                                             </div>
+                                             <div>
+                                                 <p class="ps-2 text-dark"> <span class="text-success">{{ product.get_discount }}%</span>  discount off </p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </a>
+                             </div>     
+                         {% endfor %}
+                     </div>
+                 </div>
+             </div>
+             <div class="h-100 w-100">
+                 <h4>Lowest_price</h4>
+                 <div class="p-1 border h-50 " style="background-color: lightpink;">
+     
+                     <div class="scroll-container" >
+                         {% for product in lowest_price %}
+                             <div class="p-1 card-custom" style="width: 24%;">
+                                 <a href="{% url 'product_view' product.id %}">
+                                     <div class="card h-100 border shadow-sm rounded-2 d-flex flex-column justify-content-between" style="font-size: 10px;">
+                                     
+                                         <!-- Image with fixed height -->
+                                         <div class="text-center w-auto">
+                                             <img src="{{ product.image1.url }}" class="img-fluid h-100 p-1 object-fit-cover rounded-top" alt="{{ product.name }}">
+                                         </div>
+                 
+                                         <!-- Product details -->
+                                         <div class="px-1 text-size h-auto">
+                                             <div>
+                                                 <p class="text-truncate">{{ product.name }}</p>
+                                             </div>
+                                             <div>
+                                                 <p class="ps-2 text-dark">Price : <span class="text-success">{{ product.discount_price }}</span> </p>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </a>
+                             </div>     
+                         {% endfor %}
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </section>
+    
+    
+
+
+
+
+
+
+
+
+{% include 'footer.html' %}
+{% endblock %}

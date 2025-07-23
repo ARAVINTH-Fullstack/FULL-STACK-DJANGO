@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} SIGN UP {% endblock %}
+
+{% block content %}
+    <section style="background: linear-gradient(135deg, #f0f4ff, #ffffff);">
+        <div class="container min-vh-100 d-flex justify-content-center align-items-center">
+            <div class="w-100" style="max-width: 500px;">
+                <form method="POST" class="bg-white shadow-sm rounded p-4">
+                <h2 class="text-center mb-4 text-primary">Sign Up</h2>
+                {% csrf_token %}
+
+                <!-- Username -->
+                <div class="mb-3">
+                    <label class="form-label">Username</label>
+                    <div class="position-relative">
+                    {{ form.username }}
+                    <img src="{% static 'assets/person-bounding-box.svg' %}" class="position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); height: 20px;">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div class="mb-3">
+                    <label class="form-label">Email</label>
+                    <div class="position-relative">
+                    {{ form.email}}
+                    <img src="{% static 'assets/envelope-at.svg' %}" class="position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); height: 20px;">
+                    </div>
+                </div>
+
+                <!-- Password -->
+                <div class="mb-3">
+                    <label class="form-label">Password</label>
+                    <div class="position-relative">
+                    {{ form.password1 }}
+                    <span id="showPassword1"> <img src="{% static 'assets/lock.svg' %}" class="position-absolute" id="svg1" style="right: 10px; top: 50%; transform: translateY(-50%); height: 20px;"> </span> 
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="mb-3">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="position-relative">
+                    {{ form.password2 }}
+                    <span id="showPassword2"> <img src="{% static 'assets/lock.svg' %}" class="position-absolute" id="svg2" style="right: 10px; top: 50%; transform: translateY(-50%); height: 20px;"> </span>    
+                    </div>
+                </div>
+
+                <!-- Remember Me & Forgot -->
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="rememberMe">
+                    <label class="form-check-label" for="rememberMe">Remember me</label>
+                    </div>
+                    <a href="#" class="text-decoration-none small">Forgot password?</a>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid mb-3">
+                    <button type="submit" class="btn btn-primary">Sign Up</button>
+                </div>
+
+                <!-- Already have account -->
+                <div class="text-center">
+                    <p class="mb-0">Already have an account?
+                    <a href="{% url 'login_page' %}" class="text-primary text-decoration-none">Login</a>
+                    </p>
+                </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+    <script>
+        const inputBox1 = document.getElementById('inputBox1')
+        const inputBox2 = document.getElementById('inputBox2')
+        const showPassword1 = document.getElementById('showPassword1')
+        const showPassword2 = document.getElementById('showPassword2')
+        const svg1 = document.getElementById('svg1')
+        const svg2 = document.getElementById('svg2')
+
+        showPassword1.addEventListener('click',function(){
+            const isPassword = inputBox1.type === 'text'
+            inputBox1.type = isPassword?'password':'text'
+            svg1.src = isPassword?"{% static 'assets/lock.svg' %}":"{% static 'assets/unlock.svg' %}";
+
+        })
+        showPassword2.addEventListener('click',function(){
+            const isPassword = inputBox2.type === 'text'
+            inputBox2.type = isPassword?'password':'text'
+            svg2.src = isPassword?"{% static 'assets/lock.svg' %}":"{% static 'assets/unlock.svg' %}";
+
+        })
+    </script>
+
+{% endblock %}

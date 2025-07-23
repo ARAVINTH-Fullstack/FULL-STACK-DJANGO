@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} PROFILE {% endblock %}
+
+{% block content %}
+
+
+    <div class="overlay" id="overlay"></div>
+    <div class="container-fluid">
+        <div class="row flex-nowrap">
+            <!-- Sidebar -->
+            <div class="col-auto col-md-3 col-lg-2 px-sm-2 px-0 sidebar" id="sidebar">
+                <div class="d-flex flex-column px-3 pt-3">
+                    <h4 class="text-white mb-4">My Account</h4>
+                    <ul class="nav nav-pills flex-column mb-auto" id="dashboardTabs" role="tablist">
+                        <li class="nav-item">
+                            <a href="#profile" class="nav-link active" data-bs-toggle="tab" role="tab">Profile</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Main content -->
+            <div class="col py-4 px-4">
+                <!-- Toggle Button for Mobile -->
+                <button class="toggle-btn d-md-none" id="toggleBtn">&#9776;</button>
+
+                <div class="tab-content mt-3">
+                    <!-- Profile Tab -->
+                    <div class="tab-pane fade show active" id="profile" role="tabpanel">
+                        <div class="card shadow-sm p-4 mb-4">
+                            <div class="d-flex flex-column flex-md-row align-items-center">
+                                <img src="{{ profile.profile.url }}" alt="Profile Image" class="profile-img mb-3 mb-md-0 me-md-4">
+                                <div>
+                                    <h4 class="mb-1">{{ profile.user.username | upper }}</h4>
+                                    <p class="text-muted">{{ profile.user.email }}</p>
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <h5 class="mb-3">Address Information</h5>
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <strong>Address</strong>
+                                        <div>{{ profile.mobile }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <strong>Address</strong>
+                                        <div>{{ profile.address }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <strong>City</strong>
+                                        <div>{{ profile.city }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <strong>Country</strong>
+                                        <div>{{ profile.country }}</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="info-box">
+                                        <strong>Country</strong>
+                                        <div>{{ profile.pin_code }}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div><a href="{% url 'add_profile' %}">Add profile</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        const toggleBtn = document.getElementById('toggleBtn');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        });
+
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.classList.remove('active');
+        });
+    </script>
+
+{% endblock %}

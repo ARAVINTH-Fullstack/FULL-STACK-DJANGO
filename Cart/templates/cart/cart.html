@@ -1,0 +1,131 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} CART {% endblock %}
+
+{% block content %}
+
+    {% include 'navbar2.html' %}
+
+    {% if user.is_authenticated %}
+    <div class="container my-3">
+        <h4 class="mb-4">
+            Shopping Cart 
+        </h4>
+
+        <table class="table table-stacked align-middle">
+            <thead class="table-light">
+                <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                    <th>Buy</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in product %}
+                <tr>
+                    <td data-label="Product">
+                        <div class="d-flex align-items-center">
+                            <img src="{{ item.product.image1.url }}" alt="product" class="product-img me-2">
+                            <div>
+                                <strong>{{ item.product.name }}</strong><br>
+                                <small class="text-muted">PS4</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td data-label="Quantity">
+                        <div class="d-flex align-items-center">
+                            <button class="qty-btn update-qty btn btn-outline-secondary btn-sm"
+                                    data-product-id="{{ item.product.id }}" data-action="decrease">−</button>
+                            <input type="text" class="form-control form-control-sm text-center mx-2 quantity-input"
+                                value="{{ item.quantity }}" style="width: 50px;" readonly>
+                            <button class="qty-btn update-qty btn btn-outline-secondary btn-sm"
+                                    data-product-id="{{ item.product.id }}" data-action="increase">+</button>
+                        </div>
+                    </td>
+                    <td data-label="Price">£{{ item.product.discount_price }}</td>
+                    <td data-label="Total" class="item-total">£{{ item.total_price }}</td>
+                    <td data-label="Buy">
+                        <form action="{% url 'buy' item.product.id %}" method="get">
+                            <button class="btn btn-success btn-sm">BUY</button>
+                        </form>
+                    </td>
+                    <td data-label="Remove">
+                        <button class="btn btn-danger btn-sm delete-cart" data-pid="{{ item.product.id }}">Remove</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <a href="#" class="text-primary mt-3 d-block">
+            <i class="bi bi-arrow-left"></i> Continue Shopping
+        </a>
+    </div>
+    {% else %}
+    <h1>login required</h1>
+    <p><a href="{% url 'login_page' %}">login</a></p>
+    {% endif %}
+
+
+    <script>
+    
+        document.querySelectorAll('.delete-cart').forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.dataset.pid;
+                let postobj = {
+                "pid":productId,
+                }
+                fetch("/cart/deletecart",{
+                    method : "POST",
+                    credentials : "same-origin",
+                    headers : {
+                        "Accept" : "application/json",
+                        "X-Requested-With" : "XMLHttpRequest",
+                        "X-CSRFToken" : "{{ csrf_token }}"
+                    },
+                    body : JSON.stringify(postobj)
+                }).then(res => {
+                    return res.json();
+                }).then(data => {
+                    console.log(data)
+                })
+            })
+        })
+
+        document.querySelectorAll('.update-qty').forEach(button => {
+            button.addEventListener('click', function () {
+                const productId = this.dataset.productId;
+                const action = this.dataset.action;
+                const row = this.closest('tr');
+                const quantityInput = row.querySelector('.quantity-input');
+                const itemTotal = row.querySelector('.item-total');
+                const cartTotal = document.querySelector('#cart-total');
+
+                fetch("{% url 'updatecart' %}", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "X-CSRFToken": "{{ csrf_token }}",
+                    },
+                    body: JSON.stringify({
+                        product_id: productId,
+                        action : action
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status == 'added') {
+                        quantityInput.value = `${ data.cart }`
+                        itemTotal.textContent = `£${data.cart_price}`;
+                    }
+                });
+            });
+        });
+
+    </script>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} WISHLIST {% endblock %}
+
+
+{% block content %}
+
+    {% include 'navbar2.html' %}   
+    {% if user.is_authenticated %}
+    <div class="row m-2">
+    {% for item in wishlist %}
+        <div class="col-md-4 mb-4">
+            <div class="card shadow-sm wishlist-card h-100">
+                <div class="position-relative">
+                    <img src="{{ item.product.image1.url }}" class="img-fluid object-fit-cover" alt="{{ item.product.name }}" style="object-fit: cover;">
+                    <span class="badge bg-warning text-dark position-absolute top-0 start-0 m-2">Wishlist</span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-truncate">{{ item.product.name }}</h5>
+                    <p class="card-text fw-bold text-primary">${{ item.product.price }}</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 d-flex justify-content-between align-items-center">
+                    <a href="#" class="btn btn-outline-primary btn-sm">View</a>
+                    <form action="/wishlist/toggle/{{ item.product.id }}/" method="post">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <h1>login required</h1>
+    <p><a href="{% url 'login_page' %}">login</a></p>
+    {% endif %}
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} TRACK ORDER {% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    <div class="container my-5">
+        <div class="row">
+        {% for orders in order %}
+                <div class="col-7" style="cursor: pointer;" onclick="showOrderDetail('{{ orders.id }}')">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img
+                                    src="{{ orders.product.image1.url }}"
+                                    class="img-fluid rounded-start"
+                                    alt="Product"
+                                />
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ orders.product.name }}</h5>
+                                    <p class="card-text">Quantity: <strong>{{ orders.product_total }}</strong></p>
+                                    <p class="card-text">Price: <strong>{{ orders.product.discount_price }}</strong></p>
+                                    <p class="card-text">
+                                        Delivery Status:
+                                        <span class="badge bg-warning text-dark">order placed</span>
+                                    </p>
+                                </div>
+                                <a href="{% url 'cancel_order' orders.id %}" class="btn btn-danger">cancel order</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+                <!-- Order Details -->
+                <div class="col-5">
+                    <div id="orderDetailCard" class="card d-none">
+                        <div class="card-body">
+                        <h5 class="card-title" id="productTitle">Order Details</h5>
+                        <p><strong>Order Date:</strong> <span id="placedDate"></span></p>
+                        <p><strong>Status:</strong> <span id="orderStatus"></span></p>
+                        <p><strong>Expected Delivery:</strong> <span id="deliveryDate"></span></p>
+                        </div>
+                    </div>
+                    <div id="defaultMessage" class="text-muted">
+                        <p>Select an order to see the details.</p>
+                    </div>
+                </div>
+        </div>
+    </div>
+    {% else %}
+    <h1>login required</h1>
+    <p><a href="{% url 'login_page' %}">login</a></p>
+    {% endif %}
+
+    <script id="orders-data" type="application/json">
+        {{ orders_json|safe }}
+    </script>
+
+    <script>
+        const orders = JSON.parse(document.getElementById('orders-data').textContent);
+        console.log("Orders loaded:", orders);
+
+        function showOrderDetail(id) {
+            const order = orders.find(o => o.id == id);
+            if (!order) return;
+
+            document.getElementById("productTitle").innerText = order.product.name;
+            document.getElementById("placedDate").innerText = order.placed_at;
+            document.getElementById("orderStatus").innerText = order.status;
+            document.getElementById("deliveryDate").innerText = order.expected_delivery;
+
+            document.getElementById("orderDetailCard").classList.remove("d-none");
+            document.getElementById("defaultMessage").classList.add("d-none");
+        }
+    </script>
+
+{% endblock %}

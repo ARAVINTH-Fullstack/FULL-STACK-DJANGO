@@ -1,0 +1,443 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} PRODUCT {% endblock %}
+
+
+{% block content %}
+
+    {% include 'navbar2.html' %}   
+    
+    
+    <div class="container-fluid ">
+        <!-- Add to Cart Toast -->
+        <div id="toast">
+            <span class="toast-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="30" height="30" viewBox="0 0 256 256" xml:space="preserve">
+                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                        <circle cx="45" cy="45" r="45" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(40,201,55); fill-rule: nonzero; opacity: 1;" transform="  matrix(1 0 0 1 0 0) "/>
+                        <path d="M 38.478 64.5 c -0.01 0 -0.02 0 -0.029 0 c -1.3 -0.009 -2.533 -0.579 -3.381 -1.563 L 21.59 47.284 c -1.622 -1.883 -1.41 -4.725 0.474 -6.347 c 1.884 -1.621 4.725 -1.409 6.347 0.474 l 10.112 11.744 L 61.629 27.02 c 1.645 -1.862 4.489 -2.037 6.352 -0.391 c 1.862 1.646 2.037 4.49 0.391 6.352 l -26.521 30 C 40.995 63.947 39.767 64.5 38.478 64.5 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                    </g>
+                </svg>
+            </span>
+            <span>added successfully</span>
+        </div>
+        <div id="toast2">
+            <span class="toast-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="30" height="30" viewBox="0 0 256 256" xml:space="preserve">
+                    <g style="stroke: none; stroke-width: 0; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: none; fill-rule: nonzero; opacity: 1;" transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
+                        <path d="M 45 90 C 20.187 90 0 69.813 0 45 C 0 20.187 20.187 0 45 0 c 24.813 0 45 20.187 45 45 C 90 69.813 69.813 90 45 90 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(236,0,0); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                        <path d="M 28.5 65.5 c -1.024 0 -2.047 -0.391 -2.829 -1.172 c -1.562 -1.562 -1.562 -4.095 0 -5.656 l 33 -33 c 1.561 -1.562 4.096 -1.562 5.656 0 c 1.563 1.563 1.563 4.095 0 5.657 l -33 33 C 30.547 65.109 29.524 65.5 28.5 65.5 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                        <path d="M 61.5 65.5 c -1.023 0 -2.048 -0.391 -2.828 -1.172 l -33 -33 c -1.562 -1.563 -1.562 -4.095 0 -5.657 c 1.563 -1.562 4.095 -1.562 5.657 0 l 33 33 c 1.563 1.562 1.563 4.095 0 5.656 C 63.548 65.109 62.523 65.5 61.5 65.5 z" style="stroke: none; stroke-width: 1; stroke-dasharray: none; stroke-linecap: butt; stroke-linejoin: miter; stroke-miterlimit: 10; fill: rgb(255,255,255); fill-rule: nonzero; opacity: 1;" transform=" matrix(1 0 0 1 0 0) " stroke-linecap="round"/>
+                    </g>
+                </svg>
+            </span>
+            <span>already added</span>
+        </div>
+        <div class="mt-2"><span> <a href="{% url 'home_page' %}">Home</a> </span> > <span> <a href="{% url 'product' %}?category={{ item.category }}">{{ item.category }}</a> </span> > <span> <a href="#">{{ item.name }}</a></span> </div>
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <div class="d-flex" style="width: 100%;">
+                    <div style="width: 20%;" class="mt-5 d-none d-sm-block">
+                        <div style="width: 6rem; height: 300px;">
+                            <ul class="border p-1 list-unstyled">
+                                <li class="border p-1">
+                                    <div>
+                                        <img src="{{ item.image1.url }}" alt="" style="width: 60px; height: 60px;" class="h-100 w-100 object-fit-cover" id="i1">
+                                    </div>
+                                </li>
+                                <li class="border p-1 mt-1">
+                                    <div>
+                                        <img src="{{ item.image2.url }}" alt="" style="width: 60px; height: 60px;" class="h-100 w-100 object-fit-cover" id="i2">
+                                    </div>
+                                </li>
+                                <li class="border p-1 mt-1">
+                                    <div>
+                                        <img src="{{ item.image3.url }}" alt="" style="width: 60px; height: 60px;" class=" h-100 w-100 object-fit-cover" id="i3">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column row w-100" style="width: 80%;">
+                        <div class="p-2 col-12" >
+                            <div>
+                                <div>
+                                    <img src="{{ item.image1.url }}" alt="" class="object-fit-cover p-1" style="width: 100%; height: 100%;" id="show1">
+                                </div>
+                            </div>
+                            <div class="mt-1 d-flex d-sm-none ">
+                                <div class="h-50 w-100">
+                                    <ul class="border p-1 list-unstyled d-flex gap-1">
+                                        <li class="border p-1">
+                                            <div>
+                                                <img src="{{ item.image1.url }}" alt="" class="h-100 w-100 object-fit-cover" id="i4">
+                                            </div>
+                                        </li>
+                                        <li class="border p-1">
+                                            <div>
+                                                <img src="{{ item.image2.url }}" alt="" class="h-100 w-100 object-fit-cover" id="i5">
+                                            </div>
+                                        </li>
+                                        <li class="border p-1">
+                                            <div>
+                                                <img src="{{ item.image3.url }}" alt="" class=" h-100 w-100 object-fit-cover" id="i6">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <ul class="list-unstyled d-flex">
+                                <input type="hidden" value="{{ item.id }}" id="pid">
+                                <li class="w-50"><button class="btn btn-danger w-100" id="addCart">ADD TO CART</button></li>
+                                <li class="w-50 ms-2">
+                                    <form action="{% url 'buy' item.id %}" method="get">
+                                        <button class="btn btn-danger w-100" type="submit">BUY NOW</button>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="mt-3">
+                    <h1>{{ item.name }}</h1>
+                </div>
+                <div class="mt-4">
+                    <div>
+                        <h1 class="d-inline-block">&#8377;{{ item.discount_price }}</h1>
+                        <h5 class="mt-2 ms-2 d-inline-block"> <span class="text-decoration-line-through me-2 text-danger">{{ item.price }}</span> <span class="text-light bg-success p-1">{{ item.get_discount }}% off</span> </h5>
+                    </div>
+                </div>
+                <div class="d-flex row mt-4">
+                    <div class="col-4">
+                        <h5>Delivery By</h5>
+                    </div>
+                    <div class="col-8">
+                        <p><strong>{{ delivery | date:"d F Y"}}</strong></p>
+                    </div>
+                </div>
+                <div class="d-flex row mt-4">
+                    <div class="col-4">
+                        <h5>Color</h5>
+                    </div>
+                    <ul class="list-unstyled d-flex text-primary col-8 gap-1">
+                        <li>
+                            <span class="p-2 border border-primary bg-primary text-light">Blue</span>
+                        </li>
+                        <li>
+                            <span class="p-2 border border-primary">Black</span>
+                        </li>
+                        <li>
+                            <span class="p-2 border border-primary">Yellow</span>
+                        </li>
+                    </ul>
+                </div>
+                {% if item.m_ram or m_storage or l_storage or l_ram %}
+                <div class="d-flex row mt-4">
+                    <div class="col-4">
+                        <h5>Ram</h5>
+                    </div>
+                    <ul class="list-unstyled d-flex text-primary col-8 gap-1">
+                        <li>
+                            <span class="p-2 border border-primary bg-primary text-light">6 GB</span>
+                        </li>
+                        <li>
+                            <span class="p-2 border border-primary">8 GB </span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="d-flex row mt-4">
+                    <div class="col-4">
+                        <h5>Storage</h5>
+                    </div>
+                    <ul class="list-unstyled d-flex text-primary col-8 gap-1">
+                        <li>
+                            <span class="p-2 border border-primary bg-primary text-light">128 GB</span>
+                        </li>
+                        <li>
+                        <span class="p-2 border border-primary">256 GB </span>
+                    </li>
+                    </ul>
+                </div>
+                {% endif %}
+                <div class="mt-4">
+                    <div class="d-flex row">
+                        <div class="col-4">
+                            <h5>Highlights</h5>
+                        </div>
+                        <div class="col-8">
+                            <ul style="list-style-type: disc;">
+                            {% if item.get_type == 'Mobile' %}
+                                <li>{{ item.m_ram }}</li>
+                                <li>{{ item.m_storage }}</li>
+                                <li>{{ item.m_processor }}</li>
+                                <li>{{item.m_battery}}</li>
+                                <li>{{ item.m_camera }}</li>
+                            {% elif item.get_type == 'Laptop' %}
+                                <li>{{ item.l_ram }}</li>
+                                <li>{{ item.l_storage }}</li>
+                                <li>{{ item.l_processor }}</li>
+                                <li>{{ item.l_graphic_card }}</li>
+                            {% elif item.get_type == 'Television' %}
+                                <li>{{ item.t_screen_size }}</li>
+                                <li>{{ item.resolution }}</li>
+                                {% if item.smart_tv %}
+                                <li>smart tv</li>
+                                {else}
+                                <li>No smart tv</li>
+                                {% endif %}
+                                <li>{{ item.hdmi_ports }}</li>
+                                <li>{{ item.usb_ports }}</li>
+                            {% elif item.get_type == 'Camera' %}
+                                <li>{{ item.camera_type }}</li>
+                                <li>{{ item.megapixels }}</li>
+                                <li>{{ item.optical_zoom }}</li>
+                                <li>{{ item.sensor_type }}</li>
+                            {% elif item.get_type == 'Smartwatch' %}
+                                <li>{{ item.w_screen_size }}</li>
+                                <li>{{ item.w_battery_life }}</li>
+                                <li>{{ item.features }}</li>
+                                {% if item.water_resistant %}
+                                <li>water resistant - yes</li>
+                                {% else %}
+                                <li>water resistant - no</li>
+                                {% endif %}
+                            {% elif item.get_type == 'Refrigerator' %}
+                                <li>{{ item.r_capacity }}</li>
+                                <li>{{ item.door_type }}</li>
+                                <li>{{ item.energ_rating }}</li>
+                                <li>{{ item.defrost_type }}</li>
+                            {% elif item.get_type == 'WashingMachine' %}
+                                <li>{{ item.w_type }}</li>
+                                <li>{{ item.w_capacity }}</li>
+                                <li>{{ item.function_type }}</li>
+                            {% elif item.get_type == 'Airconditioner' %}
+                                <li>{{ item.tonnage }}</li>
+                                <li>{{ item.a_type }}</li>
+                                <li>{{ item.energy_rating }}</li>
+                                <li>{{ item.cooling_capacity }}</li>
+                            {% elif item.get_type == 'Kitchenappliance' %}
+                                <li>{{ item.appliance_type }}</li>
+                                <li>{{ item.power }}</li>
+                                <li>{{ item.k_material }}</li>
+                            {% elif item.get_type == 'Grocery' %}
+                                <li>{{ item.weight }}</li>
+                                <li>{{ item.expiry_date }}</li>
+                                <li>{{ item.pack_type }}</li>
+                                {% if item.organic %}
+                                <li>organic - yes</li>
+                                {% else %}
+                                <li>organic - no</li>
+                                {% endif %}
+                            {% elif item.get_type == 'Clothing' %}
+                                <li>{{ item.c_size }}</li>
+                                <li>{{ item.fabric }}</li>
+                                <li>{{ item.c_color }}</li>
+                                <li>{{ item.gender }}</li>
+                                <li>{{ item.c_type }}</li>
+                            {% elif item.get_type == 'Footwear' %}
+                                <li>{{ item.s_size }}</li>
+                                <li>{{ item.s_material }}</li>
+                                <li>{{ item.gender }}</li>
+                                <li>{{ item.s_type }}</li>
+                            {% elif item.get_type == 'Furniture' %}
+                                <li>{{ item.f_material }}</li>
+                                <li>{{ item.dimensions }}</li>
+                                <li>{{ item.f_color }}</li>
+                                <li>{{ item.f_type }}</li>
+                            {% elif item.get_type == 'Lighting' %}
+                                <li>{{ item.light_type }}</li>
+                                <li>{{ item.wattage }}</li>
+                                <li>{{ item.l_color }}</li>
+                                {% if item.is_rechareable %}
+                                <li>rechargeable - yes</li>
+                                {% else %}
+                                <li>rechargeable - no</li>
+                                {% endif %}
+                            {% elif item.get_type == 'Babycare' %}
+                                <li>{{ item.age_group }}</li>
+                                <li>{{ item.type }}</li>
+                                <li>{{ item.quantity }}</li>
+                                {% if item.hypoallergic %}
+                                <li>hypoallergic - yes</li>
+                                {% else %}
+                                <li>hypoallergic - no</li>
+                                {% endif %}
+                            {% elif item.get_type == 'Earbuds' %}
+                                <li>{{ item.e_battery_life }}</li>
+                                <li>{{ item.bluetooth_version }}</li>
+                                {% if item.has_anc %}
+                                <li>hypoallergic - yes</li>
+                                {% else %}
+                                <li>hypoallergic - no</li>
+                                {% endif %}
+                            {% else %}
+                                <p>na</p>
+                            {% endif %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <div class="d-flex row">
+                        <div class="col-4">
+                            <h5>Return Policy</h5>
+                        </div>
+                        <div class="col-8">
+                            <ul>
+                                <li>10 days return policy</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="d-flex row mt-4">
+                        <div class="col-4">
+                            <h5>Warranty Details</h5>
+                        </div>
+                        <div class="col-8">
+                            <ul>
+                                <li>6 Months warranty for product (No Damage)</li>
+                                <li>12 Months Guarantee </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-4 d-flex row">
+                    <div class="col-4">
+                        <h5>Description</h5>
+                    </div>
+                    <div class="col-8">
+                        <p>{{ item.description }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center align-items-center w-100 h-auto">
+                <div class="border p-4 h-auto" style="width: 95%;">
+                    <div>
+                        <h1>REVIEWS</h1>
+                    </div>
+                {% for review in reviews %}
+                    <div class="col-12">
+                        <div class="border w-100 w-sm-50 p-4">
+                                <p>{{ review.user.username }}</p>
+                                <p>{{ review.rating }}</p>
+                                <p>{{ review.comment }}</p>
+                            </div>
+                        </div>
+                {% endfor %}
+                    <div class="col-12 mt-3">
+                        <div class="w-100">
+                            <div class="d-sm--flex d-block justify-content-start align-items-center">
+                                <form action="" method="post" class="d-flex flex-column border h-auto p-4 w-100 w-sm-50">
+                                    {% csrf_token %}
+                                    <div class="d-flex flex-column">
+                                        <label for="" class="form-label">rating</label>
+                                        <input type="number" name="rating" min="1" max="5" value="{{ user_review.rating|default_if_none:'' }}" required class="form-control">
+                                    </div>
+                                    <div class="d-flex flex-column">
+                                        <label for="" class="form-label">comment</label>
+                                        <textarea name="comment" class="form-control">{{ user_review.comment }}</textarea>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary mt-3">submit</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- toast message -->
+    
+
+
+    <script>
+        const i1 = document.getElementById('i1')
+        const i2 = document.getElementById('i2')
+        const i3 = document.getElementById('i3')
+        const show1 = document.getElementById('show1')
+
+        i1.addEventListener('mouseover',function() {
+            show1.src = "{{ item.image1.url }}"
+        })
+        i2.addEventListener('mouseover',function() {
+            show1.src = "{{ item.image2.url }}"
+        })
+        i3.addEventListener('mouseover',function() {
+            show1.src = "{{ item.image3.url }}"
+        })
+
+        const i4 = document.getElementById('i4')
+        const i5 = document.getElementById('i5')
+        const i6 = document.getElementById('i6')
+
+        i4.addEventListener('mouseover',function() {
+            show1.src = "{{ item.image1.url }}"
+        })
+        i5.addEventListener('mouseover',function() {
+            show1.src = "{{ item.image2.url }}"
+        })
+        i6.addEventListener('mouseover',function() {
+            show1.src = "{{ item.image3.url }}"
+        })
+
+        const pid = document.getElementById('pid')
+        const addCart = document.getElementById('addCart')
+
+        
+        addCart.addEventListener('click',function(event) {
+            let postobj = {
+            "pid":pid.value,
+            "quantity": 1
+            }
+            fetch("/cart/addcart",{
+                method : "POST",
+                credentials : "same-origin",
+                headers : {
+                    "Accept" : "application/json",
+                    "X-Requested-With" : "XMLHttpRequest",
+                    "X-CSRFToken" : "{{ csrf_token }}"
+                },
+                body : JSON.stringify(postobj)
+            }).then(res => {
+                return res.json();
+            }).then(data => {
+                console.log(data)
+                if(data.status == 'added') {
+                    toastAdd()
+                } else if(data.status == 'exist') {
+                    toastAdd2()
+                }
+            })
+        })
+        const toast = document.getElementById('toast');
+
+        function toastAdd() {
+            toast.classList.add('show');
+
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                toast.classList.remove('show');
+        }, 3000);
+        };
+        const toast2 = document.getElementById('toast2');
+
+        function toastAdd2() {
+            toast2.classList.add('show2');
+
+            // Auto-hide after 3 seconds
+            setTimeout(() => {
+                toast2.classList.remove('show2');
+        }, 3000);
+        };
+
+
+    </script>
+
+
+{% include 'footer.html' %}
+{% endblock %}

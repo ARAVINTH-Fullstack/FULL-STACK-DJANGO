@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} BUY {% endblock %}
+
+{% block content %}
+    
+    <div class="container mt-5">
+        <div class="row gap-2 gap-sm-0">
+            <!-- Right Side: Product Details -->
+            <div class="col-md-6">
+                <h2 class="mb-4">Order Summary</h2>
+                <div class="card">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="{{ product.image1.url }}" class="img-fluid rounded-start" alt="{{ product.name }}">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ product.name }}</h5>
+                                <p class="card-text mb-1"><strong>Price:</strong> ₹{{ product.price }}</p>
+                                <p class="card-text mb-1"><strong>Delivery:</strong> Free Delivery</p>
+                                <p class="card-text"><small class="text-muted">Estimated delivery on {{ delivery }}</small></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- Left Side: Shipping Form -->
+            <div class="col-md-6">
+                <h2 class="mb-4">Shipping Information</h2>
+                <form method="POST" action="">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Full Name</label>
+                        {{ form.full_name }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="mobile" class="form-label">Mobile Number</label>
+                        {{ form.shipping_mobile }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="address" class="form-label">Address</label>
+                        {{ form.shipping_address }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="city" class="form-label">City</label>
+                        {{ form.shipping_city }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="pin_code" class="form-label">PIN Code</label>
+                        {{ form.shipping_pin }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="country" class="form-label">Country</label>
+                        {{ form.shipping_country }}
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Place Order</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}
