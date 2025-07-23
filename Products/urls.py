@@ -10,6 +10,6 @@ urlpatterns = [
     path('product/',Product_list,name='product'),
     path('search/',search_view,name='search_page'),
     path('product_view/<int:pk>/',Product_view,name='product_view'),
-    path('', health_check),
+    path('health_check', health_check),
 ]
 
